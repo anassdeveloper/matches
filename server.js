@@ -6,7 +6,7 @@ const app = require('./app');
 // const server = http.createServer(app);
 
 mongoose
-.connect(process.env.MONGO_LOCAL)
+.connect(process.env.MONGO_URI)
 .then(msg => console.log('DATABASE CONNECTED '))
 .catch(err => console.log(err));
 
