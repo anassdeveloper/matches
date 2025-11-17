@@ -28,7 +28,7 @@ const matchSchema = new mongoose.Schema({
         type: Boolean, default: false
     },
     predictions: {
-        type: [String]
+        type: [Object]
     }
 })
 
