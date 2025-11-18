@@ -25,7 +25,12 @@ exports.createMatch = async (req, res) => {
         const {
           home,
           away,
-          league,time, tipOdd, bestTip, date, listOfPrediction
+          league,
+          time, 
+          bestOdd, 
+          bestPrediction, date, 
+          info, 
+          categories, status
        } = req.body;
 
        
@@ -35,10 +40,11 @@ exports.createMatch = async (req, res) => {
            away,
            league,
            time,
-           tipOdd: Number(tipOdd),
-           bestTip,
+           bestOdd: Number(bestOdd),
+           bestPrediction,
            date,
-           predictions: listOfPrediction
+           info: [home, away,league, categories, status ]
+           , categories, status 
         });
 
         res.status(201).json({
