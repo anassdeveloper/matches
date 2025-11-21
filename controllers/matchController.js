@@ -1,15 +1,23 @@
 const Match = require('../models/matchModel');
+const APIFeatures = require('../utils/APIFeatures');
 
 exports.getAllMatches = async (req, res, next) => {
     try{
        
-       const matches = await Match.find();
+       const matches = new APIFeatures(Match.find(), req.query)
+        .filter()
+        .sort()
+        .limitFields()
+        .paginate();
+
+       const docs = await matches.query;
+    //    const matches = await Match.find();
 
        res.status(200).json({
         status: 'success',
-        results: matches.length,
+        results: docs.length,
         data: {
-            matches
+            docs
         }
        })
     }catch(err){
@@ -21,16 +29,15 @@ exports.getAllMatches = async (req, res, next) => {
 exports.createMatch = async (req, res) => {
  
     try{
-        
-        const {
+       const {
           home,
           away,
           league,
           time, 
           bestOdd, 
-          bestPrediction, date, 
-          info, 
-          categories, status
+          bestPrediction, 
+          categories, status,
+          day
        } = req.body;
 
        
@@ -42,10 +49,11 @@ exports.createMatch = async (req, res) => {
            time,
            bestOdd: Number(bestOdd),
            bestPrediction,
-           date,
+           day,
            info: [home, away,league, categories, status ]
            , categories, status 
         });
+
 
         res.status(201).json({
             status: 'success',

@@ -8,10 +8,14 @@ const matchSchema = new mongoose.Schema({
    categories: {type: String, default: 'football'},
    league: String,
    status: String,
-   date: Date,
+   day: Date,
    time: String,
    finished: {type: Boolean, default: false},
-   info:[String]
+   info:[String],
+   createdAt: {
+      type:Date,
+      default: new Date()
+   }
 })
 
 
