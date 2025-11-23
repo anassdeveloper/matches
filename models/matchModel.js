@@ -8,7 +8,9 @@ const matchSchema = new mongoose.Schema({
    categories: {type: String, default: 'football'},
    league: String,
    status: String,
-   day: Date,
+   day: {
+      type: Date, required: [true, 'match should be have a timer']
+   },
    time: String,
    finished: {type: Boolean, default: false},
    info:[String],

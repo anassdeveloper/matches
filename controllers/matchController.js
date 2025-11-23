@@ -29,6 +29,9 @@ exports.getAllMatches = async (req, res, next) => {
 exports.createMatch = async (req, res) => {
  
     try{
+
+        console.log(req.body.day);
+
        const {
           home,
           away,
